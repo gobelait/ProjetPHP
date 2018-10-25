@@ -14,21 +14,21 @@ class Produit {
   function __construct() {
 
 
-    $this->tailles = explode(",", $this->tailles);
+    $this->tailles = explode(" = ", $this->tailles);
     $this->couleurs = explode(";", $this->couleurs);
     foreach ($this->couleurs as $key => $value) {
       $this->couleurs[$key] = explode(",", $value);
     }
   }
 
-  function getProduitsCouleur($path) : array {
+  function getProduitParCouleur($path) : array {
     $produits = array();
     $i = 0;
-    foreach ($this->$couleurs as $couleur) { //$ couleur = array(nomCouleur -> codecouleur)
-      $produits[$i] = this;
-      $produits[$i]->path = $path.$this->sexe.key($couleur).".png";
-      $produits[$i]->couleur = $couleur[key($couleur)];
-      $produits[$i]->codecolor = key($couleur);
+    foreach ($this->couleurs as $couleur) { //$ couleur = array(nomCouleur -> codecouleur)
+      $produits[$i] = clone $this;
+      $produits[$i]->path = $path.$this->sexe."/".$couleur[0].".png";
+      $produits[$i]->couleur = $couleur[0];
+      $produits[$i]->codecolor = $couleur[1];
       $i+=1;
     }
 

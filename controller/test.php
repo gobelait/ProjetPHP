@@ -12,13 +12,19 @@ $magasin = new ProduitDAO($config['dataPathLocalAntoine']); // changer le path (
 
 $m = $magasin->getAll();
 
+
+//provisoire
+echo "<style>body{background-color:lightgray;}</style>";
+
 $tousLesProduit = array();
 foreach ($m as $unTypeProduit) {
   $tousLesProduit[] = $unTypeProduit->getProduitParCouleur($config['imgPath']);
 }
 foreach ($tousLesProduit as $unProduit) {
   foreach ($unProduit as $unProduitColore) {
-    echo ' <img src="'.$unProduitColore->path.'"  title = "'.$unProduitColore->nom.' ('.$unProduitColore->couleur.')"><br><p style="color:'.$unProduitColore->codecolor.'">'.$unProduitColore->nom.'</p>';
+    if($unProduitColore->sexe == "homme" && $unProduitColore->codetype == 4){
+      echo ' <img src="'.$unProduitColore->path.'"  title = "'.$unProduitColore->nom.' ('.$unProduitColore->couleur.')"><br><p style="color:'.$unProduitColore->codecolor.'">'.$unProduitColore->nom.'</p>';
+    }
   }
 }
 

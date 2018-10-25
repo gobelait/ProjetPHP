@@ -10,10 +10,9 @@ $config = parse_ini_file('../config/config.ini');
 $magasin = new ProduitDAO($config['dataPath']);
 
 $m = $magasin->getAll();
-//var_dump($m);
+var_dump($m);
 
-// a enlever
-
-echo '<pre>' , var_dump($m[0]->getProduitParCouleur("test/test/")[0]) , '</pre>';
+// test getProduitParCouleur
+//echo '<pre>' , var_dump($m[0]->getProduitParCouleur("test/test/")[0]) , '</pre>';
 
 ?>

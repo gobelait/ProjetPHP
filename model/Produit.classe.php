@@ -20,7 +20,7 @@ class Produit {
       $this->couleurs[$key] = explode(",", $value);
     }
   }
-
+/test
   function getProduitParCouleur($path) : array {
     $produits = array();
     $i = 0;

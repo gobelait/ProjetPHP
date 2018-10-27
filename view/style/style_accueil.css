@@ -13,62 +13,42 @@ marquee{
   margin-right: 20%;
 }
 
-/* li{
-  display: block;
-  list-style: none;
- } */
 
- ul {
+#Logo{
+  margin:0px 30% 80px 30%;
+  min-width: 200px;
+  width: 25%;
 
+}
+
+
+#Niveau1 {
  display: flex;
  padding:0;
  margin:0;
  list-style-type:none;
  }
-li {
- margin-left:2px;
- float:left;
- }
-ul li a {
- display:block;
- width:100px;
- color:black;
- text-decoration:none;
- text-align:center;
- padding:5px;
- border:2px solid;
- border-color:#DCDCDC #696969 #696969 #DCDCDC;
- }
-ul li a:hover {
- background-color:#D3D3D3;
- border-color:#696969 #DCDCDC #DCDCDC #696969;
- }
 
- #menu-deroulant, #menu-deroulant ul {
-     padding: 0;
-     margin: 0;
-     list-style: none;
- }
+#Niveau1 li{
+  font-size: 30px;
+  padding: 20px;
+  width: 150px;
+  background: #E0E0E0;
+}
 
- #menu-deroulant li {
-     display: inline-block;
- }
- #menu-deroulant ul li {
-     display: inherit;
- }
- #menu-deroulant a {
-     text-decoration: none;
-     display: block;
- 	color:#000;
- }
- #menu-deroulant ul {
-     position: absolute;
- /* on cache les sous menus complètement sur la gauche */
-     left: -999em;
-     text-align: left;
-     z-index: 1000;
- }
- #menu-deroulant li:hover ul {
- /* Au survol des li du menu on replace les sous menus */
-     left: auto;
- }
+.Niveau2 {
+  list-style-type: none;
+  padding: 0;
+  text-decoration: #FFFFFF;
+}
+
+ul ul {
+  display: none;
+  position: absolute;
+}
+
+li:hover ul{
+  display: flex;
+  flex-wrap: wrap;
+
+}

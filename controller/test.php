@@ -7,7 +7,7 @@ require_once('../model/ProduitDAO.class.php');
 // Récupération des données de configuration
 $config = parse_ini_file('../config/config.ini');
 
-// Creation de l'instace DAO
+// Création de l'instance DAO
 // $magasin = new ProduitDAO($config['dataPathLocalAntoine']); // changer le path (ici pour chez moi)
 $magasin = new ProduitDAO($config['dataPathLocalBarth']); // Barth path
 $m = $magasin->getAll();

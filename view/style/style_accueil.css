@@ -1,6 +1,9 @@
+*{
+  color: black;
+}
+
 #flexPromo{
   width: 50%;
-  margin-top: 350px;
 }
 
 .elemPromo{
@@ -11,8 +14,8 @@ marquee{
   width: 60%;
   margin-left: 20%;
   margin-right: 20%;
+  border: solid 5px #DDDDDD;
 }
-
 
 #Logo{
   margin:0px 30% 80px 30%;
@@ -30,25 +33,41 @@ marquee{
  }
 
 #Niveau1 li{
-  font-size: 30px;
-  padding: 20px;
-  width: 150px;
   background: #E0E0E0;
+}
+
+#Niveau1 > li{
+    padding: 20px;
+    font-size: 30px;
+    width: 150px;
+    border: solid 1px #606060;
 }
 
 .Niveau2 {
   list-style-type: none;
   padding: 0;
-  text-decoration: #FFFFFF;
 }
 
+.Niveau2 li{
+  padding-left: 0;
+  text-decoration: none;
+  min-width: 140px;
+  width: 40%;
+}
 ul ul {
   display: none;
   position: absolute;
+
 }
 
-li:hover ul{
+li:hover ul {
+  margin-top: 20px;
+  margin-left: -20px;
   display: flex;
   flex-wrap: wrap;
+  width: 25%;
+}
 
+a:link{
+  text-decoration: none;
 }

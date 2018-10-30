@@ -3,12 +3,20 @@
 class ProduitDAO
 {
   private $db;
+  private $dbCategorie;
   function __construct($path) {
     try {
+      $this->dbCategorie = new PDO ('sqlite:'.$path.'/categorie.db');
       $this->db = new PDO('sqlite:'.$path.'/produit.db');
     } catch (Exception $e) {
       echo "Erreur lors de l'ouverture de la base de données";
     }
+  }
+
+  //renvoie la liste de toutes les catégories de produit
+  function getToutesLesCategories() : array{
+    $categorie = $this->dbCategorie->query("SELECT * FROM categorie")->fetchAll(PDO::FETCH_CLASS, "Categorie");
+    return $categorie;
   }
 
   // renvoie tous les produits de la catégorie de la base de données

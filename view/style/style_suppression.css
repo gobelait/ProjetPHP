@@ -1,0 +1,18 @@
+#Logo{
+  margin:0px 30% 80px 30%;
+  min-width: 200px;
+  width: 25%;
+
+}
+
+body{
+  font-size: 2em;
+}
+
+#BoutonValider{
+  margin-left: 100px;
+  width: 140px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #CCCCCC
+}

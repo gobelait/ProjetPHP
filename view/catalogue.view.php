@@ -23,7 +23,7 @@
     <div class="mainbody">
 
       <nav class="tri_filtre">
-
+        <span>tri et filtres a venir</span>
       </nav>
 
       <?php

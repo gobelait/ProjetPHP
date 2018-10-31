@@ -2,16 +2,16 @@
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Color 9 - Catalogue</title>
+    <title>Color 9 - Accueil</title>
     <link rel="stylesheet" href="../view/style/style.css">
   </head>
   <body>
     <header>
-      <img src="../view/img/autre/logo.png" alt="Color 9 logo">
-      <div class="connexion">
-        <img src="../view/img/logos/connexion.png" alt="">
+      <img src="../view/img/autre/logo.png" alt="Color 9 logo" class="logo_marque">
+      <a href="connexion.ctrl.php"><div class="connexion">
+        <img src="../view/img/logos/connexion.png">
         <span>Connexion</span>
-      </div>
+      </div></a>
       <nav>
         <ul>
           <a href="catalogue.ctrl.php?sexe=homme&categorie=null"><li>Homme</li></a>
@@ -25,22 +25,21 @@
     </div>
     <div class="mainbody">
 
-      <div class="contener">
+      <div id="contener_sexe_accueil">
         <div class="item_homme">
           <a href="catalogue.ctrl.php?sexe=homme&categorie=null">
-            <img src="../view/img/autre/homme.png" alt="Image Homme" title="Voir produits homme">
+            <div class="conteneur_mannequin"><img src="../view/img/autre/homme.png" alt="Image Homme" title="Voir produits homme" class="mannequin"></div>
           </a>
         </div>
         <div class="item_femme">
           <a href="catalogue.ctrl.php?sexe=femme&categorie=null">
-            <img src="../view/img/autre/femme.png" alt="Image Femme" title="Voir produits femme">
+            <div class="conteneur_mannequin"><img src="../view/img/autre/femme.png" alt="Image Femme" title="Voir produits femme" class="mannequin"></div>
           </a>
         </div>
       </div>
 
     </div>
     <footer>
-      <a href="#">Connexion admin</a>
     </footer>
   </body>
 </html>

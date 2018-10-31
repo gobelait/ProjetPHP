@@ -40,6 +40,7 @@
 
     </div>
     <footer>
+      <a href="#">Connexion admin</a>
     </footer>
   </body>
 </html>

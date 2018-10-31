@@ -9,7 +9,7 @@ $config = parse_ini_file('../config/config.ini');
 // Création de l'instance DAO
 $magasin = new ProduitDAO($config['dataPath']);
 
-$m = $magasin->getAll();
+$m = $magasin->getTousLesProduits();
 var_dump($m);
 
 // test getProduitParCouleur

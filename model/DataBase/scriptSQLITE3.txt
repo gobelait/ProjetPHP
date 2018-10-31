@@ -1,0 +1,8 @@
+#Script à faire pour créer la BD
+
+sqlite3 database.db
+.read create.sql
+.separator |
+.import produitDB.txt produit
+.import categorieDB.txt categorie
+.quit

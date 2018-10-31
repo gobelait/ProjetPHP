@@ -35,4 +35,7 @@
 ehthumbs.db
 Thumbs.db
 
-*.png
+# Images
+
+#*.png
+*.pfi

@@ -7,7 +7,7 @@ require_once('ProduitDAO.class.php');
 $config = parse_ini_file('../config/config.ini');
 
 // Création de l'instance DAO
-$magasin = new ProduitDAO($config['dataPath']);
+$magasin = new ProduitDAO($config['dataPathLocalAntoine']);
 
 $m = $magasin->getTousLesProduits();
 var_dump($m);

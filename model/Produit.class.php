@@ -13,21 +13,23 @@ class Produit {
 
   function __construct() {
     $this->tailles = explode(",", $this->tailles);
-    $this->couleurs = explode(";", $this->couleurs);
-    foreach ($this->couleurs as $key => $value) {
-      $this->couleurs[$key] = explode(" = ", $value);
+    $couleurTemp = explode(";", $this->couleurs);
+    $this->couleurs = array();
+    foreach ($couleurTemp as $key => $value) {
+      $couleurTemp = explode(" = ", $value);
+      $this->couleurs[$couleurTemp[0]] = $couleurTemp[1];
     }
   }
 
   //renvoi le produit par défaut
   function getProduitExpo($path) {
-    $this->path = $path.$this->sexe."/".$category[$this->codetype]."/".$couleur[0].".png";
+    $this->path = $path.$this->sexe."/".$this->codetype."/noir.png";
     $i = 0;
     foreach ($this->couleurs as $couleur) { //$ couleur = array(nomCouleur -> codecouleur)
       $produits[$i] = clone $this;
       $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/noir.png";
-      $produits[$i]->couleur = $couleur[0];
-      $produits[$i]->codecolor = $couleur[1];
+      $produits[$i]->couleur = "noir";
+      $produits[$i]->codecolor = "#000000";
       $i+=1;
     }
     return $produits;
@@ -37,12 +39,12 @@ class Produit {
   function getProduitParCouleur($path) : array {
     $produits = array();
     $i = 0;
-    foreach ($this->couleurs as $couleur) { //$ couleur = array(nomCouleur -> codecouleur)
+    foreach ($this->couleurs as $couleur => $codecolor) {
       $produits[$i] = clone $this;
-      $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/".$couleur[0].".png";
-      $produits[$i]->couleur = $couleur[0];
-      $produits[$i]->codecolor = $couleur[1];
-      $i+=1;
+      $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/".$couleur.".png";
+      $produits[$i]->couleur = $couleur;
+      $produits[$i]->codecolor = $codecolor;
+      $i++;
     }
     return $produits;
   }

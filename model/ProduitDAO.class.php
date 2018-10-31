@@ -19,12 +19,29 @@ class ProduitDAO
   }
 
   // renvoie tous les produits de la categorie passé en paramètre
-  function getProduitParCategorie(int $category) : array {
+  function getProduitCategorie(int $category) : array {
     return $this->db->query("SELECT * FROM produit WHERE codetype = $category")->fetchAll(PDO::FETCH_CLASS, "Produit");
   }
 
+  // renvoie tous les produits classé dans un tableau par catégorie avec les catégories stockées dedans pour garentir
+  // la correspondance catégorie produits en cas de modification
+  function getProduitsParCategories($path) : array {
+    $categories = $this->getCategories();
+    $produitsFinal = array();
+    foreach ($categories as $categorie) {
+      $produitsTemp = $this->getProduitCategorie($categorie->code);
+      $produitsCouleur = array();
+      foreach ($produitsTemp as $produit) {
+        $produitsCouleur = array_merge($produitsCouleur, $produit->getProduitParCouleur($path));
+      }
+      $produitsFinal[$categorie->code] = $produitsCouleur;
+    }
+    $produitsFinal["categories"] = $categories;
+    return $produitsFinal;
+  }
+
   // renvoie tous les produits du sexe passé en paramètre
-  function getProduitParSexe(string $sexe) : array {
+  function getProduitSexe(string $sexe) : array {
     if($sexe == "homme" || $sexe == "femme") { // si le sexe est bien annoncé
       $produit = $this->db->query("SELECT * FROM produit WHERE codetype = $category and sexe = $sexe")->fetchAll(PDO::FETCH_CLASS, "Produit");
       return $produit;

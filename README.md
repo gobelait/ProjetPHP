@@ -1,5 +1,10 @@
 # ProjetPHP
 
-BUGS ACTUELS :
+Aucuns bug relevés.
 
-- les pantalons hommes sont portés disparus
+Reste à faire :
+
+- connexion admin
+- ajout produit + ajout catégorie
+- vue détaillée produit
+- tri par prix (optionnel)

@@ -14,9 +14,9 @@
       </div></a>
       <nav>
         <ul>
-          <a href="catalogue.ctrl.php?sexe=homme&categorie=null"><li>Homme</li></a>
-          <a href="catalogue.ctrl.php?sexe=femme&categorie=null"><li>Femme</li></a>
-          <a href="catalogue.ctrl.php?sexe=null&categorie=null"><li>Tous les produits</li></a>
+          <a href="catalogue.ctrl.php?sexe=homme&categorie[]=all"><li>Homme</li></a>
+          <a href="catalogue.ctrl.php?sexe=femme&categorie[]=all"><li>Femme</li></a>
+          <a href="catalogue.ctrl.php?sexe=mixte&categorie[]=all"><li>Tous les produits</li></a>
         </ul>
       </nav>
     </header>
@@ -27,12 +27,12 @@
 
       <div id="contener_sexe_accueil">
         <div class="item_homme">
-          <a href="catalogue.ctrl.php?sexe=homme&categorie=null">
+          <a href="catalogue.ctrl.php?sexe=homme&categorie[]=all">
             <div class="conteneur_mannequin"><img src="../view/img/autre/homme.png" alt="Image Homme" title="Voir produits homme" class="mannequin"></div>
           </a>
         </div>
         <div class="item_femme">
-          <a href="catalogue.ctrl.php?sexe=femme&categorie=null">
+          <a href="catalogue.ctrl.php?sexe=femme&categorie[]=all">
             <div class="conteneur_mannequin"><img src="../view/img/autre/femme.png" alt="Image Femme" title="Voir produits femme" class="mannequin"></div>
           </a>
         </div>

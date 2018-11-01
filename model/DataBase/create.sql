@@ -11,5 +11,6 @@ CREATE TABLE produit (
 
 CREATE TABLE categorie (
       code INTEGER,
-      nom STRING
+      nom STRING,
+      sexe STRING
       );

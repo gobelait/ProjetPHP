@@ -17,10 +17,20 @@ $produitsCategorise = $magasin->getProduitsParCategories($config['imgPath']);
 if (isset($_GET['sexe'])) {
   $sexe = $_GET['sexe'];
   if($sexe != 'homme' && $sexe != 'femme') {
-    $sexe = 'null';
+    $sexe = 'mixte';
   }
 } else {
-  $sexe = 'null';
+  $sexe = 'mixte';
+}
+
+$filtre = array();
+
+if(!empty($_GET['categorie'])) {
+  foreach($_GET['categorie'] as $value) {
+    $filtre[] = $value;
+  }
+} else { // si aucun filtre choisi on affiche tout
+  $filtre[] = "all";
 }
 include('../view/catalogue.view.php');
 

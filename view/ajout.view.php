@@ -7,12 +7,14 @@
 
   </head>
   <body>
+    <header>
+    <img src="../view/img/autre/logo.png" alt="Color 9 logo" class="logo_marque">
+    </header>
 
-    <img id="Logo" src="img/Color9.png">
 
     <h1>Ajout d'un nouveau produit :</h1>
 
-    <form action="../controller/ajout.php" method="post" enctype="multipart/form-data">
+    <form action="../controller/ajout.ctrl.php" method="post" enctype="multipart/form-data">
       <p>
         Entrez sa catégorie :
         <input type="text" name="categorie" value="chemise" autofocus required> <br>
@@ -21,7 +23,9 @@
         Selectionnez une image :
         <input type="file" name="fileToUpload" id="fileToUpload" required><br>
         Entrez le sexe du model de l'image :
-        <input type="text" name="sexe" value="femme" required>
+        <input type="text" name="sexe" value="femme" required> <br>
+        Entrez les tailles disponibles pour ce produit <span id="remarque">(séparées par des virgules)</span>
+        <input type="text" name="tailles" value="S,M,L" required>
         <input id="BoutonValider" type="submit" value="Upload Image" name="action">
       </p>
     </form>

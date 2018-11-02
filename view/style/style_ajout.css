@@ -11,3 +11,29 @@ body{
   font-weight: bold;
   background-color: #CCCCCC
 }
+
+header {
+  width: 100%;
+  height: 15%;
+  position: fixed;
+  background-color: #E5E5E5;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
+header img.logo_marque {
+  width: 10%;
+  display: block;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input{
+  margin-left: 40px;
+}
+
+#remarque{
+  font-size: 0.75em;
+}

@@ -14,3 +14,8 @@ CREATE TABLE categorie (
       nom STRING,
       sexe STRING
       );
+
+CREATE TABLE admin (
+      id STRING,
+      mdp STRING
+);

@@ -5,4 +5,5 @@ sqlite3 database.db
 .separator |
 .import produitDB.txt produit
 .import categorieDB.txt categorie
+.import adminDB.txt admin
 .quit

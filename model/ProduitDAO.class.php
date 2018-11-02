@@ -12,6 +12,11 @@ class ProduitDAO
     }
   }
 
+  // renvoie tous les admin du site
+  function getAdmins() : array {
+    return $this->db->query("SELECT * FROM admin")->fetchAll(PDO::FETCH_CLASS, "Admin");
+  }
+
   //renvoie la liste de toutes les catégories de produit
   function getCategories() : array{
     $categorie = $this->db->query("SELECT * FROM categorie")->fetchAll(PDO::FETCH_CLASS, "Categorie");

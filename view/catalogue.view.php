@@ -50,6 +50,7 @@
         }
        ?>
        <br>
+       <input type="hidden" name="sexe" value="<?= $sexe ?>"/>
       <button>Filtrer</button>
       </form>
     </div>
@@ -69,7 +70,7 @@
         }
       } ?>
 
-      <input type="hidden" name="nom" value="<?= $sexe ?>"/>
+
 
     </div>
     <footer>

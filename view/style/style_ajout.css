@@ -1,12 +1,7 @@
-#Logo{
-  margin:0px 30% 80px 30%;
-  min-width: 200px;
-  width: 25%;
-
-}
-
 body{
   font-size: 2em;
+  color: #333333;
+  font-family: 'Lobster', cursive;
 }
 
 #BoutonValider{

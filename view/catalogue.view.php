@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <a href="accueil.ctrl.php"><img src="../view/img/autre/logo.png" alt="Color 9 logo" class="logo_marque"></a>
+      <div class="logo_marque"><a href="accueil.ctrl.php"><img src="../view/img/autre/logo.png" alt="Color 9 logo"></a></div>
       <a href="connexion.ctrl.php"><div class="connexion">
         <img src="../view/img/logos/connexion.png">
         <span>Connexion</span>
@@ -20,7 +20,6 @@
         </ul>
       </nav>
     </header>
-    <div class="mainbody">
     <div class="form_filtre">
       <form method="get" action="catalogue.ctrl.php">
       <?php if($sexe == "mixte") : ?>
@@ -35,9 +34,11 @@
         <label for="radio2">Femme</label>
       </div>
       <div class="inputGroup">
-        <input id="radio3" name="sexe" type="radio" value="mixte">
+        <input id="radio3" name="sexe" type="radio" value="mixte" checked>
         <label for="radio3">Mixte</label>
       </div><br><br>
+    <?php else : ?>
+      <input type="hidden" name="sexe" value="<?= $sexe ?>"/>
       <?php endif; ?>
       <label class="titre">Catégories</label><br><br>
       <?php
@@ -53,11 +54,10 @@
         }
        ?>
        <br>
-       <input type="hidden" name="sexe" value="<?= $sexe ?>"/>
       <button>Filtrer</button>
       </form>
     </div>
-
+    <div class="mainbody">
       <?php
       foreach ($produitsCategorise["categories"] as $categorie) { // parcours toutes les catégories
         if(in_array($categorie->code, $filtre) || in_array("all", $filtre)) {

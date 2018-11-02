@@ -3,7 +3,6 @@
 class ProduitDAO
 {
   private $db;
-  private $dbCategorie;
   function __construct($path) {
     try {
       $this->db = new PDO('sqlite:'.$path.'/database.db');

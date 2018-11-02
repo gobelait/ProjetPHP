@@ -7,7 +7,7 @@
   </head>
   <body>
     <header>
-      <img src="../view/img/autre/logo.png" alt="Color 9 logo" class="logo_marque">
+      <div class="logo_marque"><img src="../view/img/autre/logo.png" alt="Color 9 logo"></div>
       <a href="connexion.ctrl.php"><div class="connexion">
         <img src="../view/img/logos/connexion.png">
         <span>Connexion</span>

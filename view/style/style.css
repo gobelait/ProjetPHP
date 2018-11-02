@@ -20,12 +20,16 @@ header {
   z-index: 5;
 }
 
-header img.logo_marque {
+header div.logo_marque {
   width: 10%;
   display: block;
   margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
+}
+
+header div.logo_marque img {
+    width: 100%;
 }
 
 header div.connexion {
@@ -34,6 +38,7 @@ header div.connexion {
   position: absolute;
   top: 25%;
   right: 3%;
+  z-index: 10;
 }
 
 header div.connexion img {
@@ -174,7 +179,7 @@ div.form_filtre {
   padding: 30px 14px;
   max-width: 550px;
   font-size: 18px;
-  margin-bottom: 1000px;
+  height:100%;
 }
 
 label.titre {

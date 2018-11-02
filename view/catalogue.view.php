@@ -20,37 +20,38 @@
         </ul>
       </nav>
     </header>
-    <div class="mainbody">
-      <div class="form_filtre">
-        <form method="get" action="catalogue.ctrl.php">
-
-        <label class="titre">Sexe</label>
-        <br>
-        <div class="inputGroup">
-          <input id="radio1" name="sexe" type="radio" value="homme">
-          <label for="radio1">Homme</label>
-        </div>
-        <div class="inputGroup">
-          <input id="radio2" name="sexe" type="radio" value="femme">
-          <label for="radio2">Femme</label>
-        </div>
-        <div class="inputGroup">
-          <input id="radio3" name="sexe" type="radio" value="mixte">
-          <label for="radio3">Mixte</label>
-        </div><br><br>
-
-        <label class="titre">Catégories</label><br><br>
-        <?php
-          $i = 0;
-          foreach ($produitsCategorise["categories"] as $categorie) {
-            echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
-            $i++;
-          }
-         ?>
-         <br>
-        <button>Filtrer</button>
-        </form>
+    <div class="form_filtre">
+      <form method="get" action="catalogue.ctrl.php">
+      <?php if($sexe == "mixte") : ?>
+      <label class="titre">Sexe</label>
+      <br>
+      <div class="inputGroup">
+        <input id="radio1" name="sexe" type="radio" value="homme">
+        <label for="radio1">Homme</label>
       </div>
+      <div class="inputGroup">
+        <input id="radio2" name="sexe" type="radio" value="femme">
+        <label for="radio2">Femme</label>
+      </div>
+      <div class="inputGroup">
+        <input id="radio3" name="sexe" type="radio" value="mixte">
+        <label for="radio3">Mixte</label>
+      </div><br><br>
+      <?php endif; ?>
+      <label class="titre">Catégories</label><br><br>
+      <?php
+        $i = 0;
+        foreach ($produitsCategorise["categories"] as $categorie) {
+          if($sexe == "mixte" || $categorie->sexe == "mixte" || $sexe == $categorie->sexe) {
+            echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
+          }
+          $i++;
+        }
+       ?>
+       <br>
+      <button>Filtrer</button>
+      </form>
+    </div>
 
       <?php
       foreach ($produitsCategorise["categories"] as $categorie) { // parcours toutes les catégories

@@ -20,6 +20,7 @@
         </ul>
       </nav>
     </header>
+    <div class="mainbody">
     <div class="form_filtre">
       <form method="get" action="catalogue.ctrl.php">
       <?php if($sexe == "mixte") : ?>

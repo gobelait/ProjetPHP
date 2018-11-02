@@ -44,7 +44,10 @@
         $i = 0;
         foreach ($produitsCategorise["categories"] as $categorie) {
           if($sexe == "mixte" || $categorie->sexe == "mixte" || $sexe == $categorie->sexe) {
-            echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
+            echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"';
+            if(in_array($categorie->code, $filtre) || in_array("all", $filtre)) // check la box si la catégorie est déja en cours de choix
+              echo 'checked';
+            echo '><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
           }
           $i++;
         }

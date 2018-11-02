@@ -9,3 +9,4 @@ Reste à faire :
 - vue détaillée produit
 - menu déroulant (reprendre celui de barry)
 - tri par prix (optionnel)
+- tri sexe refaire

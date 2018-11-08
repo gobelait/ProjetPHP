@@ -20,12 +20,14 @@
         <input type="text" name="categorie" value="chemise" autofocus required> <br>
         Entrez sa couleur :
         <input type="text" name="couleur" value="noir" required> <br>
-        Selectionnez une image :
-        <input type="file" name="fileToUpload" id="fileToUpload" required><br>
         Entrez le sexe du model de l'image :
         <input type="text" name="sexe" value="femme" required> <br>
-        Entrez les tailles disponibles pour ce produit <span id="remarque">(séparées par des virgules)</span>
-        <input type="text" name="tailles" value="S,M,L" required>
+        Entrez le prix de ce produit
+        <input type="int" name="prix" value="10" required><br>
+        Entrez la déscription du produit
+        <input id="descriptionBox" type="text" name="description" value="Un produit abordable." required>
+        Selectionnez une image :
+        <input type="file" name="fileToUpload" id="fileToUpload" required><br>
         <input id="BoutonValider" type="submit" value="Upload Image" name="action">
       </p>
     </form>

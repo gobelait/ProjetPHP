@@ -3,7 +3,6 @@ CREATE TABLE produit (
       sexe STRING,
       nom STRING,
       codetype INTEGER,
-      tailles STRING,
       prix FLOAT,
       description STRING,
       couleurs STRING

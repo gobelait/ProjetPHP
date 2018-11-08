@@ -87,6 +87,11 @@ class ProduitDAO
 
   }
 
+  // get produit catégories
+  function getProduitId(int $id) : array {
+    return $this->db->query("SELECT * FROM produit WHERE id = $id")->fetchAll(PDO::FETCH_CLASS, "Produit");
+  }
+
   // renvoie tous les produits de la categorie passé en paramètre
   function getProduitCategorie(int $category) : array {
     return $this->db->query("SELECT * FROM produit WHERE codetype = $category")->fetchAll(PDO::FETCH_CLASS, "Produit");
@@ -101,7 +106,7 @@ class ProduitDAO
       $produitsTemp = $this->getProduitCategorie($categorie->code);
       $produitsCouleur = array();
       foreach ($produitsTemp as $produit) {
-        $produitsCouleur = array_merge($produitsCouleur, $produit->getProduitParCouleur($path));
+        $produitsCouleur = array_merge($produitsCouleur, $produit->getToutesLesCouleurs($path));
       }
       $produitsFinal[$categorie->code] = $produitsCouleur;
     }

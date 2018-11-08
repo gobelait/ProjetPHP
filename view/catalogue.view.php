@@ -42,16 +42,16 @@
       <?php endif; ?>
       <label class="titre">Catégories</label><br><br>
       <?php
-        $i = 0;
-        foreach ($produitsCategorise["categories"] as $categorie) {
-          if($sexe == "mixte" || $categorie->sexe == "mixte" || $sexe == $categorie->sexe) {
-            echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"';
-            if(in_array($categorie->code, $filtre) || in_array("all", $filtre)) // check la box si la catégorie est déja en cours de choix
-              echo 'checked';
-            echo '><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
-          }
-          $i++;
+      $i = 0;
+      foreach ($produitsCategorise["categories"] as $categorie) {
+        if($sexe == "mixte" || $categorie->sexe == "mixte" || $sexe == $categorie->sexe) {
+          echo '<div class="inputGroup"><input type="checkbox" name="categorie[]" id="choix_categorie-'.$i.'" value="'.$categorie->code.'"';
+          if(in_array($categorie->code, $filtre) || in_array("all", $filtre)) // check la box si la catégorie est déja en cours de choix
+            echo 'checked';
+          echo '><label for="choix_categorie-'.$i.'">'.$categorie->nom.'</label></div>';
         }
+        $i++;
+      }
        ?>
        <br>
       <button>Filtrer</button>
@@ -65,7 +65,7 @@
             echo '<h2 class="nom_categorie">'.$categorie->nom.'</h2><div class="categorie">';
             foreach ($produitsCategorise[$categorie->code] as $produit) { // parcours tous les produits
               if($sexe == "mixte" || $produit->sexe == $sexe) {
-                echo '<div class="produit"><a href="produit.ctrl.php?produit='.$produit->id.'"><div class="conteneur_mannequin"><img src="'.$produit->path.'" alt="Image '.$produit->nom.' '.$produit->couleur.'" title="'.$produit->nom.'" class="mannequin"></div></a><a href="produit.ctrl.php?produit='.$produit->id.'"><h3 class="nom_produit">'.$produit->nom.'</h3></a><span class="prix">'.$produit->prix.' €</span></div>';
+                echo '<div class="produit"><a href="produit.ctrl.php?id='.$produit->id.'&couleur='.$produit->couleur.'"><div class="conteneur_mannequin"><img src="'.$produit->path.'" alt="Image '.$produit->nom.' '.$produit->couleur.'" title="'.$produit->nom.'" class="mannequin"></div></a><a href="produit.ctrl.php?id='.$produit->id.'&couleur='.$produit->couleur.'"><h3 class="nom_produit">'.$produit->nom.'</h3></a><span class="prix">'.$produit->prix.' €</span></div>';
               }
             }
             echo '</div>';

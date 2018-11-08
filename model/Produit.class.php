@@ -6,37 +6,33 @@ class Produit {
   public $sexe;
   public $nom;
   public $codetype;
-  public $tailles;
   public $prix;
   public $description;
   public $couleurs;
 
   function __construct() {
-    $this->tailles = explode(",", $this->tailles);
     $couleurTemp = explode(";", $this->couleurs);
     $this->couleurs = array();
     foreach ($couleurTemp as $key => $value) {
       $couleurTemp = explode(" = ", $value);
       $this->couleurs[$couleurTemp[0]] = $couleurTemp[1];
-    }
   }
+}
 
-  //renvoi le produit par défaut
-  function getProduitExpo($path) {
-    $this->path = $path.$this->sexe."/".$this->codetype."/noir.png";
-    $i = 0;
-    foreach ($this->couleurs as $couleur) { //$ couleur = array(nomCouleur -> codecouleur)
-      $produits[$i] = clone $this;
-      $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/noir.png";
-      $produits[$i]->couleur = "noir";
-      $produits[$i]->codecolor = "#000000";
-      $i+=1;
-    }
-    return $produits;
+  //renvoi le produit de la couleur mise en paramètre si c'est possible
+  function getProduitCouleur($path, $couleur) {
+    if(array_key_exists($couleur, $this->couleurs)) {
+      $produit = clone $this;
+      $produit->path = $path.$this->sexe."/".$this->codetype."/".$couleur.".png";
+      $produit->couleur = $couleur;
+      $produit->codecolor = $this->couleurs[$couleur];
+      return $produit;
+    } else
+      throw "couleur inexistante";
   }
 
   //renvoi un tableau de produit coloré
-  function getProduitParCouleur($path) : array {
+  function getToutesLesCouleurs($path) : array {
     $produits = array();
     $i = 0;
     foreach ($this->couleurs as $couleur => $codecolor) {

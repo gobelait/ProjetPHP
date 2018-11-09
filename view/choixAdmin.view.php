@@ -7,8 +7,8 @@
   <body>
     <h1>Choisissez parmis les propositions suivantes</h1>
     <ul>
-      <a href="controller/ajout.ctrl.php"><li>Ajout d'un produit</li></a>
-      <a href="controller/suppression.ctrl.php"><li>Supression d'un produit</li></a>
+      <a href="../view/ajout.view.php"><li>Ajout d'un produit</li></a>
+      <a href="../view/suppression.view.php"><li>Supression d'un produit</li></a>
     </ul>
   </body>
 </html>

@@ -4,7 +4,7 @@ require_once('../model/ProduitDAO.class.php');
 
 // Récupération des données de configuration
 $config = parse_ini_file('../config/config.ini');
-$magasin = new ProduitDAO($config['dataPath']);  // à changer !
+$magasin = new ProduitDAO($config['dataPath']);
 
 // Mise en place des témoins de validation
 $supressionOk = 1;
@@ -45,7 +45,25 @@ if (isset($_POST['categorie'])) {
 //   $couleur = $_POST['couleur'];
 // }
 
-$magasin->deleteCategorie($categorie);
+// $dossierCible = "../view/img/vetement/homme/10";
+// $objects = scandir($dossierCible);
+// foreach ($objects as $object) {
+//   if ($object != "." && $object != "..") {
+//     if (filetype($dossierCible."/".$object) == "dir") rmdir($dossierCible."/".$object); else unlink($dossierCible."/".$object);
+//   }
+// }
+// rmdir($dossierCible);
+
+if (in_array($categorie,$categorieExistantes,true) && !(in_array($categorie,$categorieExistantesOppose,true))) {
+  print("dans categorie mais pas dans OPPOSE => suppr");
+  $magasin->deleteCategorie($categorie);
+}
+elseif (in_array($categorie,$categorieExistantes,true) && in_array($categorie,$categorieExistantesOppose,true)) {
+  print("dans categorie mais pas dans OPPOSE => suppr");
+  $magasin->updateSexeCategorie($categorie,$sexeOppose);
+}
+
+
 $dossierCible =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie);
 $dossierCibleOppose =  strtolower($config['imgPath'].$sexeOppose.'/'.$codeCategorie);
 if (is_dir($dossierCibleOppose)) {

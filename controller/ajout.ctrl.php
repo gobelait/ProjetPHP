@@ -75,7 +75,7 @@ else {  // Si elle existe ...
 
 
 //On prépare le lien vers le nouveau fichier
-$nouveauFichier =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie.'/'.$couleur.'.png');
+$nouveauFichier =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie.'/'/*.$indiceProduit.'_'*/.$couleur.'.png');
 
 
 
@@ -98,7 +98,7 @@ try {
 if ($uploadOk) {  // Si tout est OK
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $nouveauFichier)) { // On crée le fichier de l'image et si il n'y a pas de problème durant sa création ...
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " a été ajouté."; // On informe l'utilisateur
-        if (!( in_array($categorie,$categorieExistantes,true) || in_array($categorie,$categorieExistantesOppose,true))){  // Si la catégorie de  l'objet n'existe pas déjà ...
+        if (!(in_array($categorie,$categorieExistantes,true))){  // Si la catégorie de  l'objet n'existe pas déjà ...
           $magasin->insertCategorie($codeCategorie,$categorie,$sexe);
         }
         $magasin->insertProduit($indiceProduit,$sexe,$nomProduit,$codeCategorie,$prix,$description,$couleur); // et on ajoute le produit à la BD

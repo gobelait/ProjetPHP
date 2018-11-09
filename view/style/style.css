@@ -113,12 +113,12 @@ div.conteneur_mannequin {
   overflow: hidden;
 }
 
-a img.mannequin {
+img.mannequin {
   transition: all .4s ease-in;
   -webkit-transition: all .4s ease-in;
 }
 
-a img.mannequin:hover {
+img.mannequin:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   z-index: 0;
@@ -164,6 +164,11 @@ span.prix {
   font-weight: bold;
 }
 
+h3.nom_produit {
+  font-size: 30px;
+  font-weight: bold;
+}
+
 h2.nom_categorie {
   margin-top: 5%;
   margin-left: 20%;
@@ -186,11 +191,26 @@ label.titre {
   font-size: 27px;
 }
 
+div.expoproduit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
+div.expo {
+  width: 30%;
+}
 
+span.description {
+    font-size: 25px;
+    margin : 10px 0px;
+}
 
-
-
+span.taille {
+    font-size: 20px;
+    margin : 10px 0px;
+}
 
 
 

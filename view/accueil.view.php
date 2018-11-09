@@ -20,9 +20,6 @@
         </ul>
       </nav>
     </header>
-    <div class="bandeau">
-
-    </div>
     <div class="mainbody">
 
       <div id="contener_sexe_accueil">

@@ -34,6 +34,10 @@ input{
   margin-left: 40px;
 }
 
-#remarque{
-  font-size: 0.75em;
+#descriptionBox{
+  width: 50%;
+}
+
+h1{
+  padding-top: 160px;
 }

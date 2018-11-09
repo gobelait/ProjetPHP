@@ -8,7 +8,11 @@ require_once('../model/ProduitDAO.class.php');
 
 $config = parse_ini_file('../config/config.ini');
 
+<<<<<<< HEAD
 $magasin = new ProduitDAO($config['dataPathLocalJerome']);
+=======
+$magasin = new ProduitDAO($config['dataPath']);
+>>>>>>> 52ee5380767c35a5be96d4e687077539d081d439
 
 // Récupération des produits
 

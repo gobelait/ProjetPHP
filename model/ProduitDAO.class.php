@@ -11,6 +11,13 @@ class ProduitDAO
     }
   }
 
+  //renvoie le nombre de produit
+  function getIdProduitMax(): int{
+    $sql = $this->db->query("SELECT max(id) FROM produit")->fetch()[0];
+    return $sql;
+  }
+
+
   //renvoie le nombre de catégories
   function nombreDeCategories(){
     return $this->db->query("SELECT max(code) FROM  categorie")->fetchAll();
@@ -58,14 +65,14 @@ class ProduitDAO
     $stmt->bindValue(':codetype',$codetype);
     $stmt->bindValue(':prix',$prix);
     $stmt->bindValue(':description',$description);
-    $stmt->bindValue(':couleurs',$couleurs);
+    $stmt->bindValue(':couleurs',$couleurs." = #FFFF");
     $stmt->execute();
 
     return $this->db->lastInsertId();
   }
 
   // permet de supprimer un produit
-  function deleteProduit($codetype,$sexe){
+  function deleteProduit($id){
 
     // $sql = 'UPDATE INTO produit SET couleurs = :couleurs WHERE sexe = :sexe AND codetype = :codetype';
     // $stmt = $this->db->prepare($sql);
@@ -74,13 +81,23 @@ class ProduitDAO
     // $stmt->bindValue(':sexe',$sexe);
     // $stmt->execute();
 
-    $sql = 'DELETE FROM produit WHERE sexe=:sexe AND codetype = :codetype';
+    $sql = 'DELETE FROM produit WHERE id=:id';
     $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':sexe',$sexe);
-    $stmt->bindValue(':codetype',$codetype);
+    $stmt->bindValue(':id',$id);
     $stmt->execute();
 
   }
+
+  // permet de supprimer un produit
+  function deleteProduitViaSexeCategorie($sexe,$codetype){
+
+    $sql = 'DELETE FROM produit WHERE sexe = :sexe AND codetype = :codetype';
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':codetype',$codetype);
+    $stmt->bindValue(':sexe',$sexe);
+    $stmt->execute();
+  }
+
 
   // renvoie le sexe de la categorie en fonction du nom
   function getCategorieSexe($nomCategorie){

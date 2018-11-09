@@ -10,6 +10,7 @@ $magasin = new ProduitDAO($config['dataPath']);
 $supressionOk = 1;
 $categorieMixte = 0;
 
+
 //définition des différentes catégories supprimables
 
 // Récupération des données envoyé par l'utilisateur
@@ -52,14 +53,12 @@ if (isset($_POST['categorie'])) {
 //     if (filetype($dossierCible."/".$object) == "dir") rmdir($dossierCible."/".$object); else unlink($dossierCible."/".$object);
 //   }
 // }
-// rmdir($dossierCible);
+// rmdir("../view/img/vetement/11");
 
 if (in_array($categorie,$categorieExistantes,true) && !(in_array($categorie,$categorieExistantesOppose,true))) {
-  print("dans categorie mais pas dans OPPOSE => suppr");
   $magasin->deleteCategorie($categorie);
 }
 elseif (in_array($categorie,$categorieExistantes,true) && in_array($categorie,$categorieExistantesOppose,true)) {
-  print("dans categorie mais pas dans OPPOSE => suppr");
   $magasin->updateSexeCategorie($categorie,$sexeOppose);
 }
 
@@ -67,10 +66,8 @@ elseif (in_array($categorie,$categorieExistantes,true) && in_array($categorie,$c
 $dossierCible =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie);
 $dossierCibleOppose =  strtolower($config['imgPath'].$sexeOppose.'/'.$codeCategorie);
 if (is_dir($dossierCibleOppose)) {
-  print("mixte!");
   $categorieMixte = 1;
 }
-print("dossiercible va être : $dossierCible");
 if (is_dir($dossierCible) && $supressionOk){
   $objects = scandir($dossierCible);
   foreach ($objects as $object) {
@@ -80,7 +77,7 @@ if (is_dir($dossierCible) && $supressionOk){
   }
   reset($objects);
   if (rmdir($dossierCible)){
-    $magasin->deleteProduit($sexe,$codeCategorie);
+    $magasin->deleteProduitViaSexeCategorie($sexe,$codeCategorie);
     if ($categorieMixte) {
       $magasin->updateSexeCategorie($codeCategorie,$sexeOppose);
     }

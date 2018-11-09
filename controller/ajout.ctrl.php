@@ -44,25 +44,21 @@ if (isset($_POST['description'])) {
 // Traitement sur la catégorie du nouveau produit
 $categorieExistantes =$magasin->getCategoriesSexe($sexe); //On récupère toutes les catégories éxistantes du sexe
 $categorieExistantesOppose = $magasin->getCategoriesSexe($sexeOppose); //On récupère toutes les catégories éxistantes du sexeOppose
-print_r($categorieExistantes);
-print("<br>");
-print_r($categorieExistantesOppose);
 if (!( in_array($categorie,$categorieExistantes,true) || in_array($categorie,$categorieExistantesOppose,true))){ //Si elle n'éxiste pas ...
-    print("NOUVELLE CATEGORIE");
     $codeCategorie = 1+($magasin->nombreDeCategories())[0][0];
     mkdir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie));// on crée son répertoire
+    chmod(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie),0777);
+
 }
-else {  // Si elle existe ...
-  print("CATEGORIE EXISTANTE  ");
+else {  // Si elle existe ...;
   if (in_array($categorie,$categorieExistantes,true)) {
-    print("CATEGORIE EXISTE DANS SEXE");
     $codeCategorie = array_search($categorie,$categorieExistantes);
   }
   elseif (in_array($categorie,$categorieExistantesOppose,true)) {
-    print("CATEGORIE EXISTE DANS OPPOSE");
     $codeCategorie = array_search($categorie,$categorieExistantesOppose);
     if (!is_dir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie))) {  // et que son répertoire n'existe pas dans le sexe choisi
       mkdir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie));// on crée son répertoire
+      chmod(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie),0777);
       $magasin->updateSexeCategorie($categorie,'mixte');
     }
   }
@@ -73,9 +69,9 @@ else {  // Si elle existe ...
 
 // Traitement sur le nouveau produit
 
-
+$indiceProduit = $magasin->getIdProduitMax()+1;
 //On prépare le lien vers le nouveau fichier
-$nouveauFichier =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie.'/'/*.$indiceProduit.'_'*/.$couleur.'.png');
+$nouveauFichier =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie.'/'.$indiceProduit.'_'.$couleur.'.png');
 
 
 
@@ -93,10 +89,9 @@ if (file_exists($nouveauFichier)) {
 
 try {
 
-
-
 if ($uploadOk) {  // Si tout est OK
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $nouveauFichier)) { // On crée le fichier de l'image et si il n'y a pas de problème durant sa création ...
+        chmod($nouveauFichier,0777);
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " a été ajouté."; // On informe l'utilisateur
         if (!(in_array($categorie,$categorieExistantes,true))){  // Si la catégorie de  l'objet n'existe pas déjà ...
           $magasin->insertCategorie($codeCategorie,$categorie,$sexe);

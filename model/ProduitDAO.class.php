@@ -88,7 +88,7 @@ class ProduitDAO
   }
 
   // renvoie la liste de toutes les catégories de produit en fonction du sexe
-  function getCategories($sexe): array{
+  function getCategoriesSexe($sexe): array{
     if($sexe == "femme"){
       $a= $this->db->query("SELECT nom, code FROM categorie WHERE sexe='femme' or sexe='mixte'");
       foreach ($a as $row) {

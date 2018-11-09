@@ -4,7 +4,7 @@ require_once('../model/ProduitDAO.class.php');
 
 // Récupération des données de configuration
 $config = parse_ini_file('../config/config.ini');
-$magasin = new ProduitDAO($config['dataPath']);  // à changer !
+$magasin = new ProduitDAO($config['dataPath']);
 
 // Mise en place du témoin de validation
 $uploadOk = 1;
@@ -42,18 +42,32 @@ if (isset($_POST['description'])) {
 }
 
 // Traitement sur la catégorie du nouveau produit
-$categorieExistantes =$magasin->getCategories($sexe); //On récupère toutes les catégories éxistantes
+$categorieExistantes =$magasin->getCategoriesSexe($sexe); //On récupère toutes les catégories éxistantes du sexe
+$categorieExistantesOppose = $magasin->getCategoriesSexe($sexeOppose); //On récupère toutes les catégories éxistantes du sexeOppose
 print_r($categorieExistantes);
-if (!in_array($categorie,$categorieExistantes,true)){ //Si elle n'éxiste pas ...
+print("<br>");
+print_r($categorieExistantesOppose);
+if (!( in_array($categorie,$categorieExistantes,true) || in_array($categorie,$categorieExistantesOppose,true))){ //Si elle n'éxiste pas ...
+    print("NOUVELLE CATEGORIE");
     $codeCategorie = 1+($magasin->nombreDeCategories())[0][0];
-    mkdir(strtolower($config['upload_dir'].$sexe.'/'.$codeCategorie));// on crée son répertoire
+    mkdir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie));// on crée son répertoire
 }
 else {  // Si elle existe ...
-  $codeCategorie = array_search($categorie,$categorieExistantes);
-  if (!is_dir(strtolower($config['upload_dir'].$sexe.'/'.$codeCategorie))) {  // et que son répertoire n'existe pas dans le sexe choisi
-    mkdir(strtolower($config['upload_dir'].$sexe.'/'.$codeCategorie));// on crée son répertoire
-    $magasin->updateSexeCategorie($categorie,'mixte');
+  print("CATEGORIE EXISTANTE  ");
+  if (in_array($categorie,$categorieExistantes,true)) {
+    print("CATEGORIE EXISTE DANS SEXE");
+    $codeCategorie = array_search($categorie,$categorieExistantes);
   }
+  elseif (in_array($categorie,$categorieExistantesOppose,true)) {
+    print("CATEGORIE EXISTE DANS OPPOSE");
+    $codeCategorie = array_search($categorie,$categorieExistantesOppose);
+    if (!is_dir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie))) {  // et que son répertoire n'existe pas dans le sexe choisi
+      mkdir(strtolower($config['imgPath'].$sexe.'/'.$codeCategorie));// on crée son répertoire
+      $magasin->updateSexeCategorie($categorie,'mixte');
+    }
+  }
+
+
 }
 
 
@@ -61,7 +75,7 @@ else {  // Si elle existe ...
 
 
 //On prépare le lien vers le nouveau fichier
-$nouveauFichier =  strtolower($config['upload_dir'].$sexe.'/'.$codeCategorie.'/'.$couleur.'.png');
+$nouveauFichier =  strtolower($config['imgPath'].$sexe.'/'.$codeCategorie.'/'.$couleur.'.png');
 
 
 
@@ -84,7 +98,7 @@ try {
 if ($uploadOk) {  // Si tout est OK
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $nouveauFichier)) { // On crée le fichier de l'image et si il n'y a pas de problème durant sa création ...
         echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " a été ajouté."; // On informe l'utilisateur
-        if (!in_array($categorie,$categorieExistantes,true)){  // Si la catégorie de  l'objet n'existe pas déjà ...
+        if (!( in_array($categorie,$categorieExistantes,true) || in_array($categorie,$categorieExistantesOppose,true))){  // Si la catégorie de  l'objet n'existe pas déjà ...
           $magasin->insertCategorie($codeCategorie,$categorie,$sexe);
         }
         $magasin->insertProduit($indiceProduit,$sexe,$nomProduit,$codeCategorie,$prix,$description,$couleur); // et on ajoute le produit à la BD

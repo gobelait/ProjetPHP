@@ -13,78 +13,106 @@ class ProduitDAO
 
   //renvoie le nombre de catégories
   function nombreDeCategories(){
-    // $nb = $this->db->query("SELECT max(code) FROM  categorie");
     return $this->db->query("SELECT max(code) FROM  categorie")->fetchAll();
   }
 
   //permet de mettre à jour une catégorie
-  // function updateCategorie(){
-  //   $update = "UPDATE myTable SET value = 'Hakuna matata!' WHERE id = 5";
-  //   $database->exec($update);
-  // }
+  function updateSexeCategorie($nomCategorie,$sexeCible){
+    if ($sexeCible == "femme" || $sexeCible == "homme" || $sexeCible == "mixte") {
+      $stmt = $this->db->prepare("UPDATE categorie SET sexe = :sexe WHERE nom = :nom");
+      $stmt->bindValue(':nom',$nomCategorie);
+      $stmt->bindValue(':sexe',$sexeCible);
+      $stmt->execute();
+    }
+    else {
+      print("et nonnn");
+    }
+  }
 
   // permet de supprimer une catégories
   function deleteCategorie($nomCategorie){
-   $stmt = $this->db->prepare("DELETE FROM categorie WHERE nom=:nom");
-   $stmt->bindValue(':nom',$nomCategorie);
-   $stmt->execute();
+    $stmt = $this->db->prepare("DELETE FROM categorie WHERE nom=:nom");
+    $stmt->bindValue(':nom',$nomCategorie);
+    $stmt->execute();
   }
 
   // permet d'ajouter une catégorie
   function insertCategorie($code,$nomCategorie,$sexe) {
-      $sql = 'INSERT INTO categorie(code,nom,sexe) VALUES(:code,:nomCategorie,:sexe)';
-      $stmt = $this->db->prepare($sql);
-      $stmt->bindValue(':code',$code);
-      $stmt->bindValue(':nomCategorie',$nomCategorie);
-      $stmt->bindValue(':sexe',$sexe);
-      $stmt->execute();
+    $sql = 'INSERT INTO categorie(code,nom,sexe) VALUES(:code,:nomCategorie,:sexe)';
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':code',$code);
+    $stmt->bindValue(':nomCategorie',$nomCategorie);
+    $stmt->bindValue(':sexe',$sexe);
+    $stmt->execute();
 
-      return $this->db->lastInsertId();
+    return $this->db->lastInsertId();
   }
 
   // permet d'ajouter un produit
   function insertProduit($id,$sexe,$nom,$codetype,$prix,$description,$couleurs) {
-      $sql = 'INSERT INTO produit(id,sexe,nom,codetype,prix,description,couleurs) VALUES(:id,:sexe,:nom,:codetype,:prix,:description,:couleurs);
-      $stmt = $this->db->prepare($sql);
-      $stmt->bindValue(':id',$id);
-      $stmt->bindValue(':sexe',$sexe);
-      $stmt->bindValue(':nom',$nom);
-      $stmt->bindValue(':codetype',$codetype);
-      $stmt->bindValue(':prix',$prix);
-      $stmt->bindValue(':description',$description);
-      $stmt->bindValue(':couleurs',$couleurs);
-      $stmt->execute();
+    $sql = 'INSERT INTO produit(id,sexe,nom,codetype,prix,description,couleurs) VALUES(:id,:sexe,:nom,:codetype,:prix,:description,:couleurs)';
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':id',$id);
+    $stmt->bindValue(':sexe',$sexe);
+    $stmt->bindValue(':nom',$nom);
+    $stmt->bindValue(':codetype',$codetype);
+    $stmt->bindValue(':prix',$prix);
+    $stmt->bindValue(':description',$description);
+    $stmt->bindValue(':couleurs',$couleurs);
+    $stmt->execute();
 
-      return $this->db->lastInsertId();
+    return $this->db->lastInsertId();
   }
 
+  // permet de supprimer un produit
+  function deleteProduit($codetype,$sexe){
 
-  // renvoie tous les admin du site
-  function getAdmins() : array {
-    return $this->db->query("SELECT * FROM admin")->fetchAll(PDO::FETCH_CLASS, "Admin");
+    // $sql = 'UPDATE INTO produit SET couleurs = :couleurs WHERE sexe = :sexe AND codetype = :codetype';
+    // $stmt = $this->db->prepare($sql);
+    // $stmt->bindValue(':couleurs',$couleurs);
+    // $stmt->bindValue(':codetype',$codetype);
+    // $stmt->bindValue(':sexe',$sexe);
+    // $stmt->execute();
+
+    $sql = 'DELETE FROM produit WHERE sexe=:sexe AND codetype = :codetype';
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':sexe',$sexe);
+    $stmt->bindValue(':codetype',$codetype);
+    $stmt->execute();
+
   }
 
-  //renvoie la liste de toutes les catégories de produit
+  // renvoie le sexe de la categorie en fonction du nom
+  function getCategorieSexe($nomCategorie){
+    $a = $this->db->query("SELECT sexe FROM categorie WHERE nom = $nomCategorie");
+  }
+
+  // renvoie la liste de toutes les catégories de produit en fonction du sexe
   function getCategories($sexe): array{
     if($sexe == "femme"){
-      $a= $this->db->query("SELECT nom FROM categorie WHERE sexe='femme' or sexe='mixte'");
+      $a= $this->db->query("SELECT nom, code FROM categorie WHERE sexe='femme' or sexe='mixte'");
       foreach ($a as $row) {
-          $T[] = $row['nom'];
+          $T[$row['code']] = $row['nom'];
       }
       return $T;
     }
     elseif($sexe == "homme"){
-      $a = $this->db->query("SELECT nom FROM categorie WHERE sexe='homme' or sexe='mixte'");
+      $a = $this->db->query("SELECT nom, code FROM categorie WHERE sexe='homme' or sexe='mixte'");
       foreach ($a as $row) {
-          $T[] = $row['nom'];
+          $T[$row['code']] = $row['nom'];
       }
       return $T;
     }
     else {
-      echo "Erreur, sexe == femme ou homme";
+      echo "ERREUR - Veuillez entrer un sexe correcte. (homme ou femme)";
       return array();
     }
 
+  }
+
+  // renvoie tous les admin du site
+  function getAdmins() : array {
+    return $this->db->query("SELECT * FROM admin")->fetchAll(PDO::FETCH_CLASS, "Admin");
   }
 
   // get produit catégories

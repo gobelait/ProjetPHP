@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style/style_ajout.css">
-    <title></title>
+    <title>Color9</title>
 
   </head>
   <body>
@@ -18,6 +18,8 @@
       <p>
         Entrez sa catégorie :
         <input type="text" name="categorie" value="chemise" autofocus required> <br>
+        Entrez son nom :
+        <input type="text" name="nom" value="chemise à carreaux" required> <br>
         Entrez sa couleur :
         <input type="text" name="couleur" value="noir" required> <br>
         Entrez le sexe du model de l'image :

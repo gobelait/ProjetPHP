@@ -37,3 +37,7 @@ input{
 #descriptionBox{
   width: 50%;
 }
+
+h1{
+  padding-top: 160px;
+}

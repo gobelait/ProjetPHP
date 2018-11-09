@@ -3,7 +3,7 @@ require_once('../model/ProduitDAO.class.php');
 require_once('../model/Admin.class.php');
 
 $config = parse_ini_file('../config/config.ini');
-$magasin = new ProduitDAO($config['dataPathLocalJerome']);
+$magasin = new ProduitDAO($config['dataPath']);
 $admins = $magasin->getAdmins();
 if(!isset($_POST['id']) && !isset($_POST['mdp'])) {
   include("../view/connexion.view.php");
@@ -18,7 +18,7 @@ $admin->mdp=$mdp;
     include("../view/choixAdmin.view.php");
   }
   else {
-    echo "identifiant ou mot de passe incorect";
+    $erreur = "identifiant ou mot de passe incorect";
     include("../view/connexion.view.php");
   }
 }

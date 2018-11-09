@@ -212,6 +212,17 @@ span.taille {
     margin : 10px 0px;
 }
 
+span.erreur {
+  width: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 20px;
+  text-align: center;
+  color: red;
+}
+
+
+
 
 
 /* DESIGN CHECKBOX PAR Buddy Reno (https://codepen.io/BuddyLReno/pen/boGRPO?editors=0100) */

@@ -7,7 +7,7 @@
   <body>
     <h1>Connexion administrateur:</h1>
     <fieldset>
-      <form class="controller/connexion.php" method="post">
+      <form class="controller/connexion.ctrl.php" method="post">
         <p>Entrez votre identifiant:</p>
         <input type="text" name="id" value="identifiant"> <br>
         <p>Entrez votre mot de passe:</p>

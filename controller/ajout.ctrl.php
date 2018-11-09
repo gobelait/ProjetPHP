@@ -3,7 +3,7 @@ require_once('../model/ProduitDAO.class.php');
 
 // Récupération des données de configuration
 $config = parse_ini_file('../config/config.ini');
-$magasin = new ProduitDAO($config['dataPath']);  // à changer !
+$magasin = new ProduitDAO($config['dataPathLocalJerome']);  // à changer !
 $categorieExistantes =$magasin.getCategories();
 
 

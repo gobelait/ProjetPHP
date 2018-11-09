@@ -8,7 +8,7 @@ require_once('../model/ProduitDAO.class.php');
 
 $config = parse_ini_file('../config/config.ini');
 
-$magasin = new ProduitDAO($config['dataPathLocalBarth']);
+$magasin = new ProduitDAO($config['dataPathLocalJerome']);
 
 // Récupération des produits
 

@@ -87,6 +87,11 @@ class ProduitDAO
     $a = $this->db->query("SELECT sexe FROM categorie WHERE nom = $nomCategorie");
   }
 
+  function getCategories() : array{
+    $categorie = $this->db->query("SELECT * FROM categorie")->fetchAll(PDO::FETCH_CLASS, "Categorie");
+    return $categorie;
+  }
+
   // renvoie la liste de toutes les catégories de produit en fonction du sexe
   function getCategoriesSexe($sexe): array{
     if($sexe == "femme"){

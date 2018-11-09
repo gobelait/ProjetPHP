@@ -23,7 +23,7 @@ class Produit {
   function getProduitCouleur($path, $couleur) {
     if(array_key_exists($couleur, $this->couleurs)) {
       $produit = clone $this;
-      $produit->path = $path.$this->sexe."/".$this->codetype."/".$couleur.".png";
+      $produit->path = $path.$this->sexe."/".$this->codetype."/".$this->id."_".$couleur.".png";
       $produit->couleur = $couleur;
       $produit->codecolor = $this->couleurs[$couleur];
       return $produit;
@@ -37,7 +37,7 @@ class Produit {
     $i = 0;
     foreach ($this->couleurs as $couleur => $codecolor) {
       $produits[$i] = clone $this;
-      $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/".$couleur.".png";
+      $produits[$i]->path = $path.$this->sexe."/".$this->codetype."/".$this->id."_".$couleur.".png";
       $produits[$i]->couleur = $couleur;
       $produits[$i]->codecolor = $codecolor;
       $i++;

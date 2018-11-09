@@ -175,7 +175,7 @@ h2.nom_categorie {
   font-size: 50px;
 }
 
-div.form_filtre {
+div.form_filtre form {
   width: 15%;
   position: absolute;
   left: 0;
@@ -184,7 +184,6 @@ div.form_filtre {
   padding: 30px 14px;
   max-width: 550px;
   font-size: 18px;
-  height:100%;
 }
 
 label.titre {

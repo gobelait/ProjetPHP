@@ -11,7 +11,7 @@
         <p>Entrez votre identifiant:</p>
         <input type="text" name="id" value="identifiant"> <br>
         <p>Entrez votre mot de passe:</p>
-        <input type="text" name="mdp" value=""><br> <br>
+        <input type="password" name="mdp" value=""><br> <br>
         <input id="BoutonValider" type="submit" value="Connexion" name="action">
       </form>
     </fieldset>

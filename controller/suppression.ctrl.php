@@ -10,6 +10,8 @@ $magasin = new ProduitDAO($config['dataPath']);  // à changer !
 $supressionOk = 1;
 $categorieMixte = 0;
 
+//définition des différentes catégories supprimables
+
 // Récupération des données envoyé par l'utilisateur
 if (isset($_POST['sexe'])) {
   $sexe = strtolower($_POST['sexe']);
@@ -68,7 +70,7 @@ if (is_dir($dossierCible) && $supressionOk){
     echo "Le fichier a été supprimé.";
   }
   else {
-    echo "Désolé, il y a eu une erreur lors de la supréssion du produit.";
+    echo "Désolé, il y a eu une erreur lors de la suppréssion du produit.";
   }
 }
 else {

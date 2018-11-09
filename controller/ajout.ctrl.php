@@ -4,12 +4,7 @@ require_once('../model/ProduitDAO.class.php');
 
 // Récupération des données de configuration
 $config = parse_ini_file('../config/config.ini');
-<<<<<<< HEAD
-$magasin = new ProduitDAO($config['dataPathLocalJerome']);  // à changer !
-$categorieExistantes =$magasin.getCategories();
-=======
 $magasin = new ProduitDAO($config['dataPath']);  // à changer !
->>>>>>> 52ee5380767c35a5be96d4e687077539d081d439
 
 // Mise en place du témoin de validation
 $uploadOk = 1;

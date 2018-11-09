@@ -16,5 +16,5 @@ CREATE TABLE categorie (
 
 CREATE TABLE admin (
       id STRING,
-      mdp STRING
+      mdp STRING  
 );

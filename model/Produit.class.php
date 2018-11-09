@@ -28,7 +28,8 @@ class Produit {
       $produit->codecolor = $this->couleurs[$couleur];
       return $produit;
     } else
-      throw "couleur inexistante";
+      $error = 'couleur inexistante';
+      throw new Exception($error);
   }
 
   //renvoi un tableau de produit coloré
